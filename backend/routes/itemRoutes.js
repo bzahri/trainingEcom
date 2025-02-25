@@ -5,7 +5,7 @@ const { authMiddleware, adminMiddleware }  = require('../middlewares/authMiddlew
 const router = express.Router();
 
 // Ajouter un nouvel item
-router.post('/',authMiddleware, adminMiddleware, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const item = new Item(req.body);
         await item.save();
@@ -16,7 +16,7 @@ router.post('/',authMiddleware, adminMiddleware, async (req, res) => {
 });
 
 // Récupérer tous les items
-router.get('/',authMiddleware, async (req, res) => {
+router.get('/', async (req, res) => {
     const items = await Item.find();
     res.json(items);
 });
@@ -29,13 +29,13 @@ router.get('/:id', async (req, res) => {
 });
 
 // Mettre à jour un item
-router.put('/:id',authMiddleware, adminMiddleware, async (req, res) => {
+router.put('/:id', async (req, res) => {
     const item = await Item.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(item);
 });
 
 // Supprimer un item
-router.delete('/:id',authMiddleware, adminMiddleware, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     await Item.findByIdAndDelete(req.params.id);
     res.json({ message: 'Item supprimé' });
 });

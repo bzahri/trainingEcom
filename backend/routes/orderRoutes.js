@@ -6,7 +6,7 @@ const { authMiddleware, adminMiddleware } = require('../middlewares/authMiddlewa
 const router = express.Router();
 
 // 🔹 Passer une commande
-router.post('/checkout', authMiddleware, async (req, res) => {
+router.post('/checkout', async (req, res) => {
     try {
         const cart = await Cart.findOne({ user: req.user.id }).populate('items.item');
 
@@ -32,7 +32,7 @@ router.post('/checkout', authMiddleware, async (req, res) => {
 });
 
 // 🔹 Récupérer les commandes de l'utilisateur
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const orders = await Order.find({ user: req.user.id }).populate('items.item');
         res.json(orders);
@@ -42,7 +42,7 @@ router.get('/', authMiddleware, async (req, res) => {
 });
 
 // 🔹 Admin : Récupérer toutes les commandes
-router.get('/all', authMiddleware, adminMiddleware, async (req, res) => {
+router.get('/all', async (req, res) => {
     try {
         const orders = await Order.find().populate('user').populate('items.item');
         res.json(orders);
