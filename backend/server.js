@@ -9,6 +9,7 @@ const cartRoutes = require('./routes/cartRoutes');
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const projectRoutes = require('./routes/projectRoutes');
+const forumRoutes = require('./routes/forumRoutes');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/api/items', itemRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/project', projectRoutes);
+app.use('/api/forum', forumRoutes);
 
 // Démarrage du serveur
 const PORT = process.env.PORT || 5000;

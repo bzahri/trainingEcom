@@ -19,7 +19,7 @@ const Home: React.FC = () => {
             <Button onClick={() => navigate('/form-component')} mt="lg" size="lg" color="blue">Me Contacter</Button>
           </Grid.Col>
           <Grid.Col >
-            <Image src="https://source.unsplash.com/400x400/?technology" alt="Image de profil" radius="md" />
+            <Image src="/src/assets/moi.jpg" h={200} w="auto" fit="contain" alt="Image de profil" radius="md" />
           </Grid.Col>
         </Grid>
 

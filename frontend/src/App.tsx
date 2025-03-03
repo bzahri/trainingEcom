@@ -33,9 +33,10 @@ export default function App() {
                   onClick={() => navigate('/form-component')}
                   style={{ margin: '5px' }}
                 />
+               
                 <NavLink
-                  label="Projet Component"
-                  onClick={() => navigate('/project/nouveau-projet-react')}
+                  label="Projet Manager Component"
+                  onClick={() => navigate('/project-manager')}
                   style={{ margin: '5px' }}
                 />
                 <NavLink
@@ -43,14 +44,23 @@ export default function App() {
                   onClick={() => navigate('/Faq-component')}
                   style={{ margin: '5px' }}
                 />
-                
+                <NavLink
+                  label="Login Component"
+                  onClick={() => navigate('/login-component')}
+                  style={{ margin: '5px' }}
+                />
+                <NavLink
+                  label="SignUp Component"
+                  onClick={() => navigate('/signup-component')}
+                  style={{ margin: '5px' }}
+                />
               </AppShell.Navbar>
           {/* <Navbar /> */}
           <AppShell.Main>
             <RouterSwitcher />
           </AppShell.Main>
           <AppShell.Footer zIndex={opened ? 'auto' : 201}>
-            Built by you the THICCest of all CODERS 🫃🫃🫃🫃🫃🫃🫃🫃🫃🫃
+            Built by Bachir Live🫃🫃🫃🫃🫃🫃🫃🫃🫃🫃
           </AppShell.Footer>
         </AppShell>
       </div>
