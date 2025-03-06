@@ -1,21 +1,33 @@
-import { Flex, Burger, Button, useMantineColorScheme, useComputedColorScheme, AppShell } from '@mantine/core';
+import { Flex, Burger, Button, useMantineColorScheme, AppShell } from '@mantine/core';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
-const Header = ({toggle, opened}: any) => {
-  const { setColorScheme } = useMantineColorScheme();
-  const computedColorScheme = useComputedColorScheme('light');
+interface HeaderProps {
+  toggle: () => void;
+  opened: boolean;
+}
 
+const Header: React.FC<HeaderProps> = ({ toggle, opened }) => {
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
+
+  // Fonction pour basculer entre les modes clair et sombre
   const toggleColorScheme = () => {
-    setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark');
+    setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
   };
 
   return (
-    <AppShell.Header>
-      <Flex justify="space-between" align="center" style={{ padding: '10px 20px' }}>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <div>ZAHRI Bachir Portfolio 🤓</div>
-        <Button size="sm" variant="link" onClick={toggleColorScheme}>
-          {computedColorScheme === 'dark' ? <FaSun /> : <FaMoon />}
+    <AppShell.Header >
+      <Flex justify="space-between" align="center" style={{ height: '100%' }}>
+        {/* Le burger est toujours affiché */}
+        {/* <Burger opened={opened} onClick={toggle} size="sm" /> */}
+
+        {/* Bouton pour basculer entre le mode clair et sombre */}
+        <Button 
+          variant="link" 
+          onClick={toggleColorScheme} 
+          size="sm"
+          aria-label="Toggle color scheme"
+        >
+          {colorScheme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
         </Button>
       </Flex>
     </AppShell.Header>

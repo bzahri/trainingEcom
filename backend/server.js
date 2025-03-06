@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./db');
 const cors = require('cors');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const userRoutes = require('./routes/userRoutes');
 const itemRoutes = require('./routes/itemRoutes');
@@ -41,6 +43,11 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/project', projectRoutes);
 app.use('/api/forum', forumRoutes);
+
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  // Vous pouvez traiter ici le fichier téléchargé (par exemple, le déplacer vers un service de stockage en cloud)
+  res.json({ url: `/uploads/${req.file.filename}` }); // Renvoie l'URL de l'image
+});
 
 // Démarrage du serveur
 const PORT = process.env.PORT || 5000;

@@ -7,6 +7,8 @@ import ProjectManager from './ProjectManager';
 import FAQ from './Faq';
 import SignUp from './SignUp';
 import Login from './Login';
+import Profile from './Profile';
+import AboutMe from './Apropos';
 
 
 const RouteSwitcher = () => {
@@ -17,10 +19,12 @@ const RouteSwitcher = () => {
       <Route path="/form-component" element={<ContactForm />} />
       <Route path="/project-manager" element={<ProjectManager />} />
       <Route path="/project-manager/:slug" element={<Project />} />
+      <Route path="/a-propos" element={<AboutMe />} />
       <Route path="/faq-component" element={<FAQ />} />
       <Route path="/signup-component" element={<SignUp />} />
       <Route path="/login-component" element={<Login />} />
-      
+      <Route path="/profile-component" element={<Profile />} />
+
     </Routes>
   );
 };

@@ -1,45 +1,67 @@
-import React, { useState } from 'react';
-import { TextInput, PasswordInput, Button, Container, Group, Text } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';  // Importer useNavigate
+import React, { useState } from "react";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Container,
+  Group,
+  Text,
+  Alert,
+} from "@mantine/core";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext"; // Importer le contexte d'authentification
+
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { login } = useAuth(); // Récupérer la fonction login du contexte
 
   const handleSubmit = async () => {
-    const payload = { email, password };
+    setError(null); // Réinitialiser l'erreur
+    setLoading(true); // Activer le chargement
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ email, password }),
       });
-      console.log(response);
-      if (!response.ok) {
-        const errorData = await response.json();
-        setError(errorData.message || 'Erreur de connexion');
-        return;
-      }
 
       const data = await response.json();
-      alert('Connexion réussie');
-      console.log(data); // Optionnel: Sauvegarder le token JWT dans un stockage local
-      localStorage.setItem('token', data.token);
-      // Rediriger l'utilisateur vers la page d'accueil ou le tableau de bord
-      navigate("/home-component");  // Redirection vers la page d'accueil
+
+      if (!response.ok) {
+        throw new Error(data.message || "Erreur de connexion");
+      }
+
+      // Stocker le token et mettre à jour l'utilisateur dans le contexte
+      login(data.token);
+
+      // Redirection après connexion
+      navigate("/home-component");
     } catch (error: any) {
-      setError(error.message || 'Erreur inconnue');
+      setError(error.message);
+    } finally {
+      setLoading(false); // Désactiver le chargement
     }
   };
 
   return (
     <Container>
-      <Text size="xl">Connexion</Text>
-      {error && <Text color="red">{error}</Text>}
+      <Text size="xl" mb="md">
+        Connexion
+      </Text>
+
+      {error && (
+        <Alert color="red" mb="md">
+          {error}
+        </Alert>
+      )}
+
       <TextInput
         label="Email"
         placeholder="ton@email.com"
@@ -54,8 +76,11 @@ const Login: React.FC = () => {
         onChange={(e) => setPassword(e.currentTarget.value)}
         required
       />
-      <Group >
-        <Button onClick={handleSubmit}>Se connecter</Button>
+
+      <Group mt="md">
+        <Button onClick={handleSubmit} loading={loading}>
+          Se connecter
+        </Button>
       </Group>
     </Container>
   );
