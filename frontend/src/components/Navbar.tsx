@@ -13,6 +13,7 @@ const { user } = useAuth(); // 🔥 Récupérer l'utilisateur depuis le contexte
             <NavLink label="Project Manager Component" onClick={() => navigate('/project-manager')} />
             <NavLink label="FAQ Component" onClick={() => navigate('/Faq-component')} />
             <NavLink label="A Propos" onClick={() => navigate('/a-propos')} />
+            <NavLink label="ChatBot" onClick={() => navigate('/chat-bot')} />
             {user ? (
               <NavLink label="Profile Component" onClick={() => navigate('/profile-component')} />
             ) : (

@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true, match: [/\S+@\S+\.\S+/, 'Please use a valid email address'] },
     password: { type: String, required: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' }, // Rôle user/admin
-    profilePicture: { type: String, default: '' } // URL de la photo de profil
+    images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }] // Référence aux images uploadées
+
 });
 
 // Hacher le mot de passe avant de sauvegarder
@@ -32,7 +33,6 @@ userSchema.methods.generateToken = function () {
                 id: this._id,
                 name: this.username,     // Ajout du nom
                 email: this.email,   // Ajout de l'email
-                role: this.role,     // Ajout du rôle
             },
             process.env.JWT_SECRET,
             { expiresIn: '7d' }

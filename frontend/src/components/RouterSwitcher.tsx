@@ -9,12 +9,13 @@ import SignUp from './SignUp';
 import Login from './Login';
 import Profile from './Profile';
 import AboutMe from './Apropos';
+import Chatbot from './Chatbot';
 
 
 const RouteSwitcher = () => {
   return (
     <Routes>
-      <Route path="*" element={<NotFound />} />
+      <Route path="/" element={<Home />} />
       <Route path="/home-component" element={<Home />} />
       <Route path="/form-component" element={<ContactForm />} />
       <Route path="/project-manager" element={<ProjectManager />} />
@@ -24,6 +25,8 @@ const RouteSwitcher = () => {
       <Route path="/signup-component" element={<SignUp />} />
       <Route path="/login-component" element={<Login />} />
       <Route path="/profile-component" element={<Profile />} />
+      <Route path="/chat-bot" element={<Chatbot />} />
+      <Route path="*" element={<NotFound />} />
 
     </Routes>
   );

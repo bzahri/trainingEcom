@@ -1,68 +1,10 @@
-// import React, { useState, useEffect } from "react";
-// import { useAuth } from "../AuthContext";
-// import { Container, Text, Avatar, Button, Group, Card, Divider, Center } from "@mantine/core";
-// import { FaEdit, FaSignOutAlt } from "react-icons/fa"; // Utilisation de react-icons
-
-// const Profile: React.FC = () => {
-//   const { user, logout } = useAuth();
-//   const [profilePic, setProfilePic] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     if (user?.profilePicture) {
-//       setProfilePic(user.profilePicture);
-//     } else {
-//       setProfilePic(null);
-//     }
-//   }, [user]);
-
-//   if (!user) {
-//     return (
-//       <Container>
-//         <Text size="lg" color="red">Vous devez vous connecter pour voir votre profil.</Text>
-//       </Container>
-//     );
-//   }
-
-//   return (
-//     <Container size="xs">
-//       <Card shadow="md" padding="lg" radius="md" withBorder>
-//         <Center>
-//           {profilePic ? (
-//             <Avatar src={profilePic} alt="Photo de profil" size={120} radius="50%" />
-//           ) : (
-//             <Avatar size={120} radius="50%">
-//               {user.name?.charAt(0).toUpperCase()}
-//             </Avatar>
-//           )}
-//         </Center>
-
-//         <Text  size="xl"  mt="md">
-//           {user.name}
-//         </Text>
-//         <Text  size="md" color="dimmed">
-//           {user.email}
-//         </Text>
-
-//         <Divider my="md" />
-
-//         <Group  mt="md">
-//           <Button variant="light" onClick={() => alert("Modifier le profil bientôt disponible !")}>
-//             <FaEdit />
-//           </Button>
-//           <Button color="red" onClick={logout}>
-//             <FaSignOutAlt />
-//           </Button>
-//         </Group>
-//       </Card>
-//     </Container>
-//   );
-// };
 
 // export default Profile;
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../AuthContext";
 import { Container, Text, Avatar, Button, Group, Card, Divider, Center, Modal, TextInput } from "@mantine/core";
 import { FaEdit, FaSignOutAlt } from "react-icons/fa"; // Utilisation de react-icons
+import ImageCarousel from "./ImageCarousel";
 
 const Profile: React.FC = () => {
   const { user, logout } = useAuth();
@@ -89,7 +31,7 @@ const Profile: React.FC = () => {
   if (!user) {
     return (
       <Container>
-        <Text size="lg" color="red">Vous devez vous connecter pour voir votre profil.</Text>
+        <Text size="lg" >Vous devez vous connecter pour voir votre profil.</Text>
       </Container>
     );
   }
