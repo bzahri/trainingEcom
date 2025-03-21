@@ -15,7 +15,7 @@ const router = express.Router();
 router.post('/upload',authMiddleware, upload.single('image'), uploadImage);
 
 // Récupérer toutes les images (admin uniquement)
-router.get('/',authMiddleware, getAllImages);
+router.get('/', getAllImages);
 
 // Récupérer les images de l'utilisateur connecté
 router.get('/user',authMiddleware, getUserImages);

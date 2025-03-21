@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../AuthContext";
 import { Container, Text, Avatar, Button, Group, Card, Divider, Center, Modal, TextInput } from "@mantine/core";
 import { FaEdit, FaSignOutAlt } from "react-icons/fa"; // Utilisation de react-icons
-import ImageCarousel from "./ImageCarousel";
+import ImageUploader from "./ImageUploader";
+import ImageGallery from "./ImageGallery";
 
 const Profile: React.FC = () => {
   const { user, logout } = useAuth();
@@ -90,6 +91,8 @@ const Profile: React.FC = () => {
           <Button onClick={handleProfileUpdate}>Enregistrer</Button>
         </Group>
       </Modal>
+      <ImageUploader />
+      <ImageGallery />
     </Container>
   );
 };

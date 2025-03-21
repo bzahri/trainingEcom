@@ -17,12 +17,10 @@ export const upload = multer({ storage });
 
 // Upload d'une image et l'associer à un utilisateur
 export const uploadImage = async (req, res) => {
-  console.log(req.file)
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
-    console.log(req.user);
     const userId = req.user.id; // Récupérer l'ID de l'utilisateur authentifié (via middleware auth)
 
     // Vérifier si l'utilisateur existe
@@ -51,28 +49,18 @@ export const uploadImage = async (req, res) => {
   }
 };
 
-// Récupérer toutes les images (Admin uniquement)
-// export const getAllImages = async (req, res) => {
-//   try {
-//     const images = await Image.find().populate('userId', 'username email');
-//     res.status(200).json(images);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Erreur lors de la récupération des images' });
-//   }
-// };
+// Récupérer toutes les images 
 export const getAllImages = async (req, res) => {
   try {
-    const images = await Image.find().populate('userId', 'username email');
 
-    // Ajouter le chemin complet de l'image
+    const images = await Image.find().populate('userId', 'username email');
     const updatedImages = images.map((img) => ({
       _id: img._id,
       filename: img.filename,
-      url: `${req.protocol}://${req.get('host')}/uploads/${img.filename}`, // Génère l'URL complète
+      url: `${req.protocol}://${req.get('host')}/uploads/${img.filename}`, // URL complète de l'image
       userId: img.userId,
     }));
-    console.log(updatedImages);
+    
     res.status(200).json(updatedImages);
   } catch (error) {
     console.error(error);

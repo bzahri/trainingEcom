@@ -11,13 +11,12 @@ const authMiddleware = (req, res, next) => {
         req.user = decoded; // Stocker l'utilisateur authentifié dans req.user
         next();
     } catch (error) {
-        return res.status(401).json({ message: 'Token invalide maboy' });
+        return res.status(401).json({ message: 'Token invalide : authMiddleware catch' });
     }
 };
 
 // Vérifier si l'utilisateur est admin
 const adminMiddleware = (req, res, next) => {
-    console.log('token:', token);
     if (req.user.role !== 'admin') {
         return res.status(403).json({ message: "Accès interdit : Administrateurs uniquement" });
     }

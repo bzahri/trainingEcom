@@ -57,7 +57,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/project', projectRoutes);
 app.use('/api/forum', forumRoutes);
 app.use('/api/images', imageRoutes); // Ajouter les routes des images
-
+app.use("/uploads", express.static("uploads")); 
 // Gestion des routes non trouvées
 app.use((req, res) => {
   res.status(404).json({ message: 'Route non trouvée' });

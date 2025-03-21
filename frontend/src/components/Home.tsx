@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Container, Title, Text, Button, Group, Grid, Card, Image, Stack, FileInput } from "@mantine/core";
 import { FaBriefcase, FaUserCircle } from "react-icons/fa"; // Icônes pour les sections
 import { useNavigate } from "react-router-dom";
-import ImageUploader from "./ImageUploader";
-import ImageCarousel from "./ImageCarousel";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -11,8 +9,7 @@ const Home: React.FC = () => {
   return (
     <Container size="lg" mt="md">
       {/* Section d'introduction */}
-      <ImageUploader />
-      {/* <ImageCarousel /> */}
+      
       <Stack align="center" >
       
         <Title order={1}>Bienvenue sur mon Portfolio</Title>
