@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true, match: [/\S+@\S+\.\S+/, 'Please use a valid email address'] },
     password: { type: String, required: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' }, // Rôle user/admin
+    profilePicture: { type: String, default: 'https://example.com/default-profile.png' }, // Photo de profil
     images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }] // Référence aux images uploadées
-
 });
 
 // Hacher le mot de passe avant de sauvegarder
@@ -27,12 +27,12 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 // Générer un token JWT
 userSchema.methods.generateToken = function () {
     try {
-        // Inclure name et email dans le token
         return jwt.sign(
             {
                 id: this._id,
-                name: this.username,     // Ajout du nom
-                email: this.email,   // Ajout de l'email
+                name: this.username,
+                email: this.email,
+                profilePicture: this.profilePicture // Ajouter la photo de profil au token
             },
             process.env.JWT_SECRET,
             { expiresIn: '7d' }
@@ -41,6 +41,5 @@ userSchema.methods.generateToken = function () {
         throw new Error('Token generation failed');
     }
 };
-
 
 module.exports = mongoose.model('User', userSchema);

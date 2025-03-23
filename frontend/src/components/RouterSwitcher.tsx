@@ -1,15 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import NotFound from './NotFound';
-import Home from './Home';
-import ContactForm from './ContactForm';
-import Project from './Project';
-import ProjectManager from './ProjectManager';
-import FAQ from './Faq';
-import SignUp from './SignUp';
-import Login from './Login';
-import Profile from './Profile';
-import AboutMe from './Apropos';
-import Chatbot from './Chatbot';
+import Home from './pages/Home';
+import ContactForm from './contact/ContactForm';
+import Project from './projects/Project';
+import ProjectManager from './projects/ProjectManager';
+import FAQ from './pages/Faq';
+import SignUp from './auth/SignUp';
+import Login from './auth/Login';
+import Profile from './profile/Profile';
+import AboutMe from './pages/Apropos';
+import Chatbot from './chatbot/Chatbot';
+import NotFound from './common/NotFound';
 
 
 const RouteSwitcher = () => {

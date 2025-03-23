@@ -96,18 +96,18 @@ import { AppShell, NavLink } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { MantineProvider } from '@mantine/core';
 import { theme } from './theme';
-import Header from './components/Header';
 import RouterSwitcher from './components/RouterSwitcher';
-import Navbar from './components/Navbar';
+import Header from './components/common/Header';
+import Navbar from './components/common/Navbar';
 
 export default function App() {
   const [opened, { toggle }] = useDisclosure();
 
   return (
     <MantineProvider theme={theme}>
-      <div className="App" style={{ marginTop: '20px' }}>
+      <div className="App" style={{ marginTop: '20px',marginBottom:'20px' }}>
         <AppShell
-          header={{ height: 60 }}
+          header={{ height: '100' }}
           navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
           padding="md"
         >

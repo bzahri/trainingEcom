@@ -81,8 +81,8 @@ import { jwtDecode } from "jwt-decode";
 // Définition du type pour le token décodé
 interface DecodedToken {
   name: string;
-  profilePicture: string;
   email: string;
+  profilePicture: string;
   exp: number; // Expiration du token en timestamp UNIX
 }
 
