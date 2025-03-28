@@ -1,10 +1,9 @@
 import { FaSignOutAlt } from "react-icons/fa";
-import { useAuth } from "../../AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Text, Button, Avatar, Group } from "@mantine/core";
 
 const UserInfo = () => {
   const { user, logout } = useAuth();
-  console.log(user ? user : 'vide');
 
   return (
     <>

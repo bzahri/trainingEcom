@@ -16,6 +16,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const forumRoutes = require('./routes/forumRoutes');
 const imageRoutes = require('./routes/imageRoutes')
+const courseRoutes = require("./routes/courseRoutes");
 
 const app = express();
 connectDB();
@@ -51,12 +52,9 @@ app.use(express.json());
 // Définition des routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/items', itemRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/project', projectRoutes);
-app.use('/api/forum', forumRoutes);
 app.use('/api/images', imageRoutes); // Ajouter les routes des images
+app.use("/api/courses", courseRoutes);
+app.use("/api/users", userRoutes); // Lien avec le contrôleur
 app.use("/uploads", express.static("uploads")); 
 // Gestion des routes non trouvées
 app.use((req, res) => {

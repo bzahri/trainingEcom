@@ -1,7 +1,7 @@
 
 // export default Profile;
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Container, Text, Avatar, Button, Group, Card, Divider, Center, Modal, TextInput } from "@mantine/core";
 import { FaEdit, FaSignOutAlt } from "react-icons/fa"; // Utilisation de react-icons
 import ImageUploader from "../gallery/ImageUploader";

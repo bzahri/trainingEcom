@@ -10,14 +10,20 @@ import Profile from './profile/Profile';
 import AboutMe from './pages/Apropos';
 import Chatbot from './chatbot/Chatbot';
 import NotFound from './common/NotFound';
+import ServicesComponent from './pages/ServicesComponent';
+import UsersList from './users/UsersList';
+import CourseManager from './courses/CourseManager';
 
 
 const RouteSwitcher = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/listes-users-component" element={<UsersList />} />
+      <Route path="/course-component" element={<CourseManager />} />
       <Route path="/home-component" element={<Home />} />
       <Route path="/form-component" element={<ContactForm />} />
+      <Route path="/services-component" element={<ServicesComponent />} />
       <Route path="/project-manager" element={<ProjectManager />} />
       <Route path="/project-manager/:slug" element={<Project />} />
       <Route path="/a-propos" element={<AboutMe />} />

@@ -1,62 +1,66 @@
-import React, { useState } from "react";
-import { Container, Title, Text, Button, Group, Grid, Card, Image, Stack, FileInput, Space, Blockquote } from "@mantine/core";
-import { FaBriefcase, FaUserCircle } from "react-icons/fa"; // Icônes pour les sections
-import { useNavigate } from "react-router-dom";
-import ImageGallery from "../gallery/ImageGallery";
-import '@mantine/carousel/styles.css';
-import OpenStreetMapComponent from "../contact/OpenStreetMapComponent";
-import TimeLineComponent from "./TimeLineComponent";
-import { IconInfoCircle } from "@tabler/icons-react";
-
-const Home: React.FC = () => {
-  const navigate = useNavigate();
+import { useState } from "react";
+import {
+  Container,
+  Title,
+  Text,
+  Image,
+  Box,
+  Divider,
+  SimpleGrid,
+  Paper,
+} from "@mantine/core";
+import { IconUsers, IconBook, IconSchool } from "@tabler/icons-react";
+import ContactForm from "../contact/ContactForm";
+import CourseList from "../courses/CourseList";
+const Home = () => {
+  
 
   return (
-    <>
-      <Container size="lg" mt="md">
-        <Stack align="center" >
+    <Box>
+      {/* Section Hero */}
+      <Container size="xl" py="xl">
+        <Title order={1} mb="md">
+          Bienvenue sur notre Plateforme de Cours et de Formations en Ligne
+        </Title>
+        <Text size="lg"  mb="xl">
+          Explorez des cours variés et rejoignez une communauté d'apprenants.
+        </Text>
+        <Image src="http://localhost:5173/src/assets/Leonardo_Phoenix_10_prompt_An_illustration_of_a_modern_sleek_1.jpg" alt="Illustration" radius="md" />
+      </Container>
+      <Divider my="xl" />
+      {/* Section des Cours */}
+      <Container size="xl" py="xl">
+        <Title order={2} mb="md">
+          Découvrez une grande panoplie de Cours et Formations
+        </Title>
+        <Text  mb="xl">
+          Choisissez un cours et explorez l'univers qui l'accompagne'.
+        </Text>
+        <CourseList />
 
-          {/* Section d'introduction */}
-          <Title order={1}>Agence de Communication Digital</Title>
-          <Text size="lg">
-            Votre agence de communication digitale. Nous concevons des solutions sur mesure pour une stratégie de communication crédible et créative. Confiez-nous la gestion de votre présence en ligne pour booster votre entreprise !
-          </Text>
-          {/* Boutons d'appel à l'action */}
-          <Group mt="xl">
-            <Button color="blue" leftSection={<FaBriefcase />} variant="outline" onClick={() => navigate('/project-manager')}>
-              Nos Services
-            </Button>
-            <Button color="blue" leftSection={<FaBriefcase />} variant="outline" onClick={() => navigate('/project-manager')}>
-              Nos Projets
-            </Button>
-            <Button color="green" leftSection={<FaUserCircle />} variant="outline" onClick={() => navigate('/a-propos')}>
-              En savoir plus sur moi
-            </Button>
-            <Button color="green" leftSection={<FaUserCircle />} variant="outline" onClick={() => navigate('/a-propos')}>
-              Nous Contactez
-            </Button>
-          </Group>
-        </Stack>
-        <Space h="sm" />
-        <Stack align="center" justify="center">
-          {/* Fonctionalité Diverses */}
-          <Title order={1}>Galerie d'Image</Title>
-          <ImageGallery />
-          <Title order={1}>Street Map</Title>
-          <OpenStreetMapComponent />
-          <Title order={1}>Time Line</Title>
-          <TimeLineComponent />
-          <Title order={1}>Block Quote</Title>
-          <Blockquote color="violet" cite="– Forrest Gump" icon={<IconInfoCircle />} mt="xl">
-            Life is like an npm install – you never know what you are going to get.
-          </Blockquote>
-        </Stack>
       </Container>
 
+      {/* Section Étudiants Inscrits */}
 
 
-    </>
+      <Divider my="xl" />
 
+      {/* Section Contact */}
+      <Container size="xl" py="xl">
+        <Title order={2} mb="md">
+          Contactez-Nous
+        </Title>
+        <Text size="lg" mb="xl">
+          Avez-vous des questions ? Contactez notre équipe pour plus d'informations.
+        </Text>
+        <SimpleGrid cols={2} spacing="xl">
+          <ContactForm />
+        </SimpleGrid>
+      </Container>
+
+      <Divider my="xl" />
+      
+    </Box>
   );
 };
 

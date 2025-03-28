@@ -9,7 +9,7 @@ import {
   Alert,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../AuthContext"; // Importer le contexte d'authentification
+import { useAuth } from "../../context/AuthContext"; // Importer le contexte d'authentification
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
